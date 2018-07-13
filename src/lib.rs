@@ -1,8 +1,39 @@
-#![feature(use_extern_macros)]
-
-extern crate tt_call;
-use tt_call::tt_return;
-
+/// Convert a number from pseudo-base-10 to a unary encoding.
+/// <sup>**[tt-call]**</sup>
+/// 
+/// # Input
+/// 
+///   - `input = [{` integer literal, N, with **each digit as a separate token** `}]`
+///   - `acc = [{ }]` (for internal use, must be empty)
+///   
+/// # Output
+/// 
+///   - `input = [{` sequence of N tokens (namely ` .`) `}]`
+///   
+/// # Example
+/// 
+/// ```rust
+/// #![feature(use_extern_macros)]
+/// extern crate tt_call;
+/// extern crate tt_num;
+/// use tt_call::tt_call;
+/// use tt_num::tt_atoi;
+/// 
+/// fn main() {
+///     assert_eq!(
+///         tt_call! {
+///             macro = [{ tt_atoi }]
+///             input = [{ 1 0 }]
+///             acc = [{ }]
+///             ~~> stringify
+///         },
+///         "input = [ { . . . . . . . . . . } ]"
+///     );
+/// }
+/// ```
+/// 
+/// See also `examples/times.rs`.
+/// 
 #[macro_export]
 macro_rules! tt_atoi {
     // done
@@ -11,7 +42,7 @@ macro_rules! tt_atoi {
         input = [{ }]
         acc = [{ $($a:tt)* }]
     } => {
-        tt_return! {
+        tt_call::tt_return! {
             $caller
             input = [{ $($a)* }]
         }

@@ -1,0 +1,13 @@
+[package]
+name = "tt-num"
+version = "0.1.0"
+authors = ["Alex Burka <aburka@seas.upenn.edu>"]
+license = "MIT/Apache-2.0"
+description = "tt-macros for various numerical operations"
+repository = "https://github.com/durka/tt-num"
+documentation = "https://docs.rs/tt-num"
+readme = "README.md"
+
+[dependencies]
+tt-call = "1.0.1"
+
